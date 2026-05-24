@@ -22,3 +22,32 @@ resource "azurerm_api_management_api_policy" "api_policy" {
 
   xml_content = file(var.policy_xml_path)
 }
+
+# 3. नया प्रोडक्ट (Product) क्रिएट करना
+resource "azurerm_api_management_product" "product" {
+  product_id            = "${var.api_name}-product"
+  api_management_name   = var.apim_name
+  resource_group_name   = var.resource_group_name
+  display_name          = "${var.api_display_name} Product"
+  subscription_required = true
+  approval_required     = false
+  published             = true
+}
+
+# 4. क्रिएट की गई API को इस प्रोडक्ट के साथ लिंक/जोड़ना
+resource "azurerm_api_management_product_api" "product_api_link" {
+  api_name            = azurerm_api_management_api.api.name
+  product_id          = azurerm_api_management_product.product.product_id
+  api_management_name = var.apim_name
+  resource_group_name = var.resource_group_name
+}
+
+# 5. इस प्रोडक्ट के ऊपर प्रोडक्ट-लेवल XML पॉलिसी लगाना
+resource "azurerm_api_management_product_policy" "product_policy" {
+  product_id          = azurerm_api_management_product.product.product_id
+  api_management_name = var.apim_name
+  resource_group_name = var.resource_group_name
+
+  # हम मानकर चल रहे हैं कि प्रोडक्ट पॉलिसी की फाइल का पाथ भी हम पास करेंगे
+  xml_content = file(var.product_policy_xml_path)
+}
