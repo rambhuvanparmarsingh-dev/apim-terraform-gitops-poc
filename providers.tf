@@ -1,6 +1,6 @@
 terraform {
-  # टेराफॉर्म का बिल्कुल लेटेस्ट वर्जन लॉक करना
-  required_version = ">= 1.15.0"
+  # आपके सिस्टम में मौजूद v1.14.9 या उससे ऊपर के वर्जन को अनुमति देने के लिए
+  required_version = ">= 1.14.9"
 
   cloud {
     organization = "Ramparorg"
