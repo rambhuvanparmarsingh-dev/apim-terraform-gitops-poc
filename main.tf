@@ -12,5 +12,5 @@ resource "azurerm_api_management" "apim" {
   publisher_name      = "Rambhavan Parmar"
   publisher_email     = "rambhuvanparmarsingh@gmail.com" # यहाँ अपना ईमेल डाल सकते हैं
 
-  sku_name = "Consumption"
+  sku_name = "Consumption_0"
 }
