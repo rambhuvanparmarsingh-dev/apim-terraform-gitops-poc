@@ -22,16 +22,3 @@ resource "azurerm_api_management_api_policy" "api_policy" {
 
   xml_content = file(var.policy_xml_path)
 }
-# पेटस्टोर API को ऑनबोर्ड करने के लिए मॉड्यूल को कॉल करना
-module "petstore_api_onboarding" {
-  source = "./modules/apim-api-onboarding"
-
-  resource_group_name = azurerm_resource_group.rg.name
-  apim_name           = azurerm_api_management.apim.name
-
-  api_name          = "petstore-api"
-  api_display_name  = "Petstore Demo API"
-  api_path          = "petstore"
-  openapi_spec_path = "./apis/petstore-api/openapi.json"
-  policy_xml_path   = "./apis/petstore-api/policy.xml"
-}
