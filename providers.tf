@@ -1,19 +1,20 @@
 terraform {
-  required_version = ">= 1.0.0"
+  # टेराफॉर्म का बिल्कुल लेटेस्ट वर्जन लॉक करना
+  required_version = ">= 1.15.0"
 
-  # यह ब्लॉक आपके लोकल टेराफॉर्म को आपके बनाए गए टेराफॉर्म क्लाउड वर्कस्पेस से लिंक करेगा
   cloud {
-    organization = "Ramparorg" # आपकी ऑर्गेनाइजेशन का नाम
+    organization = "Ramparorg"
 
     workspaces {
-      name = "apim-terraform-gitops-poc" # आपके वर्कस्पेस का नाम
+      name = "apim-terraform-gitops-poc"
     }
   }
 
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.0"
+      # Azure प्रोवाइडर का सबसे लेटेस्ट v3/v4 स्टेबल सीरीज लॉक करना
+      version = "~> 3.116.0" 
     }
   }
 }
