@@ -28,4 +28,17 @@ module "petstore_api_onboarding" {
   openapi_spec_path       = "./apis/petstore-api/openapi.json"
   policy_xml_path         = "./apis/petstore-api/policy.xml"
   product_policy_xml_path = "./apis/petstore-api/product-policy.xml" # <-- नया वेरिएबल यहाँ जोड़ा गया है
+
+  # New variables for product/subscription management
+  product_name            = "PetStore-Premium"
+  product_display_name    = "PetStore Premium"
+  product_description     = "Premium access to PetStore API"
+  subscription_required   = true
+  approval_required       = false
+  subscriptions_limit     = 1
+  product_policy_xml_path = "./apis/petstore-api/premium-product-policy.xml"
+  endpoint_access_path    = "/pets"
+  rate_limit              = 100
+  quota_limit             = 5000
+  quota_renewal_period    = 86400
 }
