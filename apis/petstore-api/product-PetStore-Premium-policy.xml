@@ -1,0 +1,34 @@
+<policies>
+    <inbound>
+        <base />
+        <choose>
+            <when condition="@(context.Request.MatchedPath.Value == '/pets' &amp;&amp; context.Request.Method == 'GET')">
+                <rate-limit-by-key calls="100" renewal-period="60" counter-key="@(context.Subscription.Id)" />
+                <quota-by-key calls="5000" renewal-period="86400" counter-key="@(context.Subscription.Id)" />
+                <check-header name="Ocp-Apim-Subscription-Key" failed-check-httpcode="401" failed-check-error-message="Unauthorized. Subscription key is missing." />
+            </when>
+            <otherwise>
+                <return-response response-variable-name="response">
+                    <set-status code="403" reason="Forbidden" />
+                    <set-header name="Content-Type" exists-action="override">
+                        <value>application/json</value>
+                    </set-header>
+                    <set-body>
+                        {
+                            "message": "Access to this endpoint is restricted."
+                        }
+                    </set-body>
+                </return-response>
+            </otherwise>
+        </choose>
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
