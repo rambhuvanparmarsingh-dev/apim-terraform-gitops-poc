@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User Profile Service",
+    "version": "1.0.0",
+    "description": "API to manage user profile information"
+  },
+  "servers": [
+    {
+      "url": "https://api.yourdomain.com/user-profile"
+    }
+  ],
+  "paths": {
+    "/details": {
+      "get": {
+        "summary": "Get user profile details",
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of user details"
+          }
+        }
+      }
+    },
+    "/update": {
+      "post": {
+        "summary": "Update user profile information",
+        "responses": {
+          "200": {
+            "description": "Profile updated successfully"
+          }
+        }
+      }
+    }
+  }
+}

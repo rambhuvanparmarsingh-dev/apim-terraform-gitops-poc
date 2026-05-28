@@ -29,3 +29,8 @@ module "petstore_api_onboarding" {
   policy_xml_path         = "./apis/petstore-api/policy.xml"
   product_policy_xml_path = "./apis/petstore-api/product-policy.xml" # <-- नया वेरिएबल यहाँ जोड़ा गया है
 }
+
+module "user-profile-service-api" {
+  source  = "./modules/apim-api-onboarding"
+  api_dir = "apis/user-profile-service-api"
+}
