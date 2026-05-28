@@ -1,0 +1,30 @@
+<policies>
+    <inbound>
+        <base />
+        <!-- Add any custom inbound policies here -->
+        <set-header name="X-Request-ID" exists-action="override">
+            <value>@(Guid.NewGuid().ToString())</value>
+        </set-header>
+        <log-to-eventhub logger-id="apim-logger">
+            <message>@($"Inbound request to User Profile Service: {context.Request.Url}")</message>
+        </log-to-eventhub>
+    </inbound>
+    <backend>
+        <base />
+        <!-- Add any custom backend policies here -->
+    </backend>
+    <outbound>
+        <base />
+        <!-- Add any custom outbound policies here -->
+        <log-to-eventhub logger-id="apim-logger">
+            <message>@($"Outbound response from User Profile Service: {context.Response.StatusCode}")</message>
+        </log-to-eventhub>
+    </outbound>
+    <on-error>
+        <base />
+        <!-- Add any custom error handling policies here -->
+        <log-to-eventhub logger-id="apim-logger">
+            <message>@($"Error occurred in User Profile Service: {context.LastError.Message}")</message>
+        </log-to-eventhub>
+    </on-error>
+</policies>
