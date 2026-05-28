@@ -28,4 +28,5 @@ module "petstore_api_onboarding" {
   openapi_spec_path       = "./apis/petstore-api/openapi.json"
   policy_xml_path         = "./apis/petstore-api/policy.xml"
   product_policy_xml_path = "./apis/petstore-api/product-policy.xml" # <-- नया वेरिएबल यहाँ जोड़ा गया है
+  product_PetStore_Premium_policy_xml_path = "./apis/petstore-api/product-PetStore-Premium-policy.xml"
 }

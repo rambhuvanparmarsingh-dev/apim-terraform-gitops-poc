@@ -36,3 +36,8 @@ variable "product_policy_xml_path" {
   type        = string
   description = "Local path to the Product-level policy XML file"
 }
+
+variable "product_PetStore_Premium_policy_xml_path" {
+  type        = string
+  description = "Path to the policy XML file for the PetStore-Premium product"
+}
