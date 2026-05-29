@@ -1,0 +1,29 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Order Fulfillment Service",
+    "description": "Simple API for processing and tracking customer orders."
+  },
+  "host": "api.orders.internal",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "summary": "Get a list of recent orders",
+        "operationId": "getOrders",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  }
+}

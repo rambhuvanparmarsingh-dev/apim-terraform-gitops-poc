@@ -29,3 +29,15 @@ module "petstore_api_onboarding" {
   policy_xml_path         = "./apis/petstore-api/policy.xml"
   product_policy_xml_path = "./apis/petstore-api/product-policy.xml" # <-- नया वेरिएबल यहाँ जोड़ा गया है
 }
+
+module "order-fulfillment-service-api" {
+  source                  = "./apis/order-fulfillment-service-api"
+  resource_group_name     = var.resource_group_name
+  apim_name               = var.apim_name
+
+  api_name                = "order-fulfillment-service"
+  api_display_name        = "Order Fulfillment Service Api"
+  api_path                = "orderfulfillmentservice"
+  openapi_spec_path       = "./apis/order-fulfillment-service-api/openapi.json"
+  policy_xml_path         = "./apis/order-fulfillment-service-api/policy.xml"
+}
