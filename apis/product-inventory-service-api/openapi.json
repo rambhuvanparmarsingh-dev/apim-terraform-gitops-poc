@@ -1,0 +1,80 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Product Inventory Service",
+    "description": "API for managing retail product stock levels and catalog details."
+  },
+  "host": "api.catalog.internal",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "summary": "Create a new product",
+        "operationId": "createProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Product object to be added to the inventory",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product created successfully"
+          },
+          "400": {
+            "description": "Invalid input supplied"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "required": [
+        "name",
+        "sku"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "example": "Wireless Noise-Canceling Headphones"
+        },
+        "sku": {
+          "type": "string",
+          "example": "ELEC-HEAD-001"
+        },
+        "stockLevel": {
+          "type": "integer",
+          "format": "int32",
+          "example": 150
+        },
+        "price": {
+          "type": "number",
+          "format": "float",
+          "example": 199.99
+        }
+      }
+    }
+  }
+}

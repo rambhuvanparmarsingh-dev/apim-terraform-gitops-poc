@@ -29,3 +29,17 @@ module "petstore_api_onboarding" {
   policy_xml_path         = "./apis/petstore-api/policy.xml"
   product_policy_xml_path = "./apis/petstore-api/product-policy.xml" # <-- नया वेरिएबल यहाँ जोड़ा गया है
 }
+
+module "product_inventory_service_api" {
+  source                  = "./apis/product-inventory-service-api"
+
+  resource_group_name     = var.resource_group_name
+  apim_name               = var.apim_name
+
+  api_name                = "product-inventory-service"
+  api_display_name        = "Product Inventory Service Api"
+  api_path                = "productinventoryservice"
+  openapi_spec_path       = "./apis/product-inventory-service-api/openapi.json"
+  policy_xml_path         = "./apis/product-inventory-service-api/policy.xml"
+  product_policy_xml_path = "./apis/product-inventory-service-api/Retail-Core-Product-policy.xml"
+}
