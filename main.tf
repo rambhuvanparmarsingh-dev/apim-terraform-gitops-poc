@@ -29,3 +29,17 @@ module "petstore_api_onboarding" {
   policy_xml_path         = "./apis/petstore-api/policy.xml"
   product_policy_xml_path = "./apis/petstore-api/product-policy.xml" # <-- नया वेरिएबल यहाँ जोड़ा गया है
 }
+
+module "user_profile_service_api" {
+  source = "./modules/apim-api-onboarding"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  apim_name           = azurerm_api_management.apim.name
+
+  api_name                = "user-profile-service"
+  api_display_name        = "User Profile Service API"
+  api_path                = "user-profile"
+  openapi_spec_path       = "./apis/user-profile-service-api/openapi.json"
+  policy_xml_path         = "./apis/user-profile-service-api/policy.xml"
+  product_policy_xml_path = "./apis/user-profile-service-api/product-policy.xml"
+}
